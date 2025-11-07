@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=4 format=3 uid="uid://dbnujrtlpcy0i"]
+
+[ext_resource type="Script" uid="uid://bkfq7l4xe1mfj" path="res://scenes/Inventory/inventory_slot.gd" id="2_orphi"]
+[ext_resource type="Script" uid="uid://bse7pqi7s2h5k" path="res://scenes/Inventory/inventory.gd" id="4_6uptj"]
+
+[sub_resource type="Resource" id="Resource_gfcfr"]
+script = ExtResource("2_orphi")
+metadata/_custom_type_script = "uid://bkfq7l4xe1mfj"
+
+[resource]
+script = ExtResource("4_6uptj")
+slots = Array[ExtResource("2_orphi")]([SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr"), SubResource("Resource_gfcfr")])
+metadata/_custom_type_script = "uid://bse7pqi7s2h5k"

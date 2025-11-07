@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://ypocvvjquy5u"]
+
+[ext_resource type="Texture2D" uid="uid://cwwmx6kio1l71" path="res://assets/GUI/InventoryRect.png" id="1_ogt6o"]
+[ext_resource type="Texture2D" uid="uid://b06xkyeld415m" path="res://assets/GUI/slot.png" id="2_ogt6o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ogt6o"]
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 200.0
+texture = ExtResource("1_ogt6o")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="NinePatchRect/VBoxContainer"]
+position = Vector2(27, 48)
+texture = ExtResource("2_ogt6o")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+text = "Artifacts"
+label_settings = SubResource("LabelSettings_ogt6o")
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="NinePatchRect/VBoxContainer"]
+position = Vector2(77, 48)
+texture = ExtResource("2_ogt6o")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="NinePatchRect/VBoxContainer"]
+position = Vector2(27, 91)
+texture = ExtResource("2_ogt6o")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D4" type="Sprite2D" parent="NinePatchRect/VBoxContainer"]
+position = Vector2(77, 91)
+texture = ExtResource("2_ogt6o")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D5" type="Sprite2D" parent="NinePatchRect/VBoxContainer"]
+position = Vector2(27, 132)
+texture = ExtResource("2_ogt6o")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D6" type="Sprite2D" parent="NinePatchRect/VBoxContainer"]
+position = Vector2(77, 132)
+texture = ExtResource("2_ogt6o")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D7" type="Sprite2D" parent="NinePatchRect/VBoxContainer"]
+position = Vector2(27, 175)
+texture = ExtResource("2_ogt6o")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D8" type="Sprite2D" parent="NinePatchRect/VBoxContainer"]
+position = Vector2(77, 175)
+texture = ExtResource("2_ogt6o")
+metadata/_edit_group_ = true

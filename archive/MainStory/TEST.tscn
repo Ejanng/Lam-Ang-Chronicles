@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dws8f7dxwr16w"]
+
+[ext_resource type="PackedScene" uid="uid://cggscjapu5aer" path="res://scenes/Player/Player.tscn" id="1_mu7s8"]
+[ext_resource type="PackedScene" uid="uid://dpxhekdoyxvc0" path="res://scenes/Enemy/enemy.tscn" id="2_owcq8"]
+[ext_resource type="PackedScene" uid="uid://bcxda6gun7nus" path="res://scenes/archive/Hostilev1/melee_tribe_member.tscn" id="3_owcq8"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_mu7s8")]
+
+[node name="Enemy" parent="." instance=ExtResource("2_owcq8")]
+position = Vector2(224, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(224, 1)
+
+[node name="melee_enemy" parent="." instance=ExtResource("3_owcq8")]
+position = Vector2(79, 98)
