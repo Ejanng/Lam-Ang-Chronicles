@@ -1,0 +1,111 @@
+[gd_scene load_steps=14 format=3 uid="uid://cjbjxqe0ihb15"]
+
+[ext_resource type="Texture2D" uid="uid://cjfv6a5g7lalx" path="res://assets/Sprites/Player/Lam-Ang/lam-ang idle spritesheet.png" id="1_kctci"]
+
+[sub_resource type="GDScript" id="GDScript_kctci"]
+script/source = "extends CharacterBody2D
+class_name LamAng
+
+@onready var anim = $AnimatedSprite2D
+@onready var state_machine = $state_machine
+
+func _ready() -> void:
+	state_machine.init(self)
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kipck"]
+atlas = ExtResource("1_kctci")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7i74"]
+atlas = ExtResource("1_kctci")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2fek"]
+atlas = ExtResource("1_kctci")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jp5j"]
+atlas = ExtResource("1_kctci")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kik3y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kipck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7i74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2fek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jp5j")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kipck"]
+size = Vector2(16, 5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7i74"]
+radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2fek"]
+size = Vector2(10, 20)
+
+[sub_resource type="Animation" id="Animation_kik3y"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_5jp5j"]
+resource_name = "idle"
+length = 1.6
+loop_mode = 1
+step = 1.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dgc14"]
+_data = {
+&"RESET": SubResource("Animation_kik3y"),
+&"idle": SubResource("Animation_5jp5j")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = SubResource("GDScript_kctci")
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kik3y")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.92778355
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12.5)
+shape = SubResource("RectangleShape2D_kipck")
+metadata/_edit_lock_ = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, 12.5)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -12.5)
+shape = SubResource("CapsuleShape2D_y7i74")
+
+[node name="Sword" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
+position = Vector2(13, 5)
+shape = SubResource("RectangleShape2D_d2fek")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dgc14")
+}
+
+[node name="State" type="Node" parent="."]
