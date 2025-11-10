@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Player
 
 class_name LamAng
 
@@ -6,10 +6,7 @@ class_name LamAng
 #const DEATH_SCREEN = preload("")
 
 func die():
-	#super()
+	super()
 	sm.force_change_state("Die")
 	#var death_scene = DEATH_SCREEN.instantiate()
 	#add_child(death_scene)
-	
-	pass
-	

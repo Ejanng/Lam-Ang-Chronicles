@@ -50,6 +50,6 @@ func change_state(source_state: State, new_state_name: String):
 		
 	if current_state:
 		current_state.Exit()
-		
+	
 	new_state.Enter()
 	current_state = new_state

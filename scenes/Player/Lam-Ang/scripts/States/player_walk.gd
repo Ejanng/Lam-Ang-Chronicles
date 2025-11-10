@@ -26,7 +26,7 @@ func Update(delta: float):
 		start_dash(input_dir)
 		
 	if Input.is_action_just_pressed("Attack"):
-		Transition("Attacking")
+		Transition("PlayerAttack")
 	
 func Move(input_dir: Vector2):
 	if (dash_direction != Vector2.ZERO and dash_direction != input_dir):
@@ -53,7 +53,7 @@ func Move(input_dir: Vector2):
 		animator.play(anim_name)
 		
 	if (input_dir.length() <= 0):
-		Transition("Idle")
+		Transition("PlayerIdle")
 	
 		
 func start_dash(input_dir: Vector2):

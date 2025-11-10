@@ -1,14 +1,20 @@
-[gd_scene load_steps=39 format=3 uid="uid://cjbjxqe0ihb15"]
+[gd_scene load_steps=47 format=3 uid="uid://cjbjxqe0ihb15"]
 
 [ext_resource type="Texture2D" uid="uid://cjfv6a5g7lalx" path="res://assets/Sprites/Player/Lam-Ang/lam-ang idle spritesheet.png" id="1_kctci"]
 [ext_resource type="Script" uid="uid://dk6puy4b2sbdv" path="res://scenes/Player/Lam-Ang/scripts/player.gd" id="1_kipck"]
 [ext_resource type="Texture2D" uid="uid://cuh6yk0x63a31" path="res://assets/Sprites/Player/Lam-Ang/lam-ang iswing sword angry spritesheet.png" id="2_6guch"]
 [ext_resource type="Script" uid="uid://23sujqxi4sbs" path="res://scripts/state_machine.gd" id="3_d2fek"]
 [ext_resource type="Texture2D" uid="uid://bakpuu55p0koy" path="res://assets/Sprites/Player/Lam-Ang/lam-ang hurt _w sword spritesheet.png" id="3_hdvrl"]
-[ext_resource type="Script" uid="uid://cikaltyvi5hgx" path="res://scenes/Player/Lam-Ang/scripts/States/PlayerWalk.gd" id="3_y7i74"]
+[ext_resource type="Script" uid="uid://cikaltyvi5hgx" path="res://scenes/Player/Lam-Ang/scripts/States/player_walk.gd" id="3_y7i74"]
 [ext_resource type="Texture2D" uid="uid://oxn84k4imbi0" path="res://assets/Sprites/Player/Lam-Ang/lam-ang front walk spritesheet.png" id="5_yjrhp"]
 [ext_resource type="Texture2D" uid="uid://cu15wc0ovhtbg" path="res://assets/Sprites/Player/Lam-Ang/lam-ang side walk spritesheet.png" id="6_b86wg"]
 [ext_resource type="Texture2D" uid="uid://d65qmc8oqme1" path="res://assets/Sprites/Player/Lam-Ang/lam-ang back walk spritesheet.png" id="7_ms58j"]
+[ext_resource type="PackedScene" uid="uid://uafwmj20exb5" path="res://scenes/components/health_component.tscn" id="8_ues50"]
+[ext_resource type="PackedScene" uid="uid://us43fp04gv7s" path="res://scenes/components/hitbox_component.tscn" id="9_b42le"]
+[ext_resource type="Script" uid="uid://iuonoxodusxm" path="res://scenes/Player/Lam-Ang/scripts/States/player_idle.gd" id="10_hdvrl"]
+[ext_resource type="Script" uid="uid://cnvqgq1t2eveg" path="res://scenes/Player/Lam-Ang/scripts/States/player_idle_side.gd" id="11_yjrhp"]
+[ext_resource type="Script" uid="uid://7un48pvp5rtb" path="res://scenes/Player/Lam-Ang/scripts/States/player_idle_back.gd" id="12_b86wg"]
+[ext_resource type="Script" uid="uid://b2v4uyt2ucery" path="res://scenes/Player/Lam-Ang/scripts/States/player_attack.gd" id="15_b42le"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ues50"]
 atlas = ExtResource("2_6guch")
@@ -172,14 +178,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kipck"]
 size = Vector2(16, 5)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7i74"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t3l7m"]
+radius = 9.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2fek"]
 size = Vector2(10, 20)
 
-[sub_resource type="Animation" id="Animation_kik3y"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_8v1ud"]
+resource_name = "attack"
+step = 0.0333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -190,7 +197,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"idle"]
+"values": [&"attack"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -199,22 +206,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.26666668, 0.56666666, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sword/AttackHitbox:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"values": [0, 1, 2, 0]
 }
 
 [sub_resource type="Animation" id="Animation_5jp5j"]
@@ -258,21 +253,58 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
+
+[sub_resource type="Animation" id="Animation_ms58j"]
+resource_name = "IdleBack"
+step = 0.0333
+
+[sub_resource type="Animation" id="Animation_b86wg"]
+resource_name = "IdleSide"
+step = 0.0333
+
+[sub_resource type="Animation" id="Animation_kik3y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword/AttackHitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_8v1ud"]
-resource_name = "attack"
+[sub_resource type="Animation" id="Animation_ift0q"]
+resource_name = "Walk_Down"
+length = 0.4
+loop_mode = 1
 step = 0.0333
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -284,7 +316,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"attack"]
+"values": [&"walk_down"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -293,10 +325,21 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.56666666, 0.8333333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1, 2, 0]
+"values": [0, 1]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_cp2oh"]
@@ -359,59 +402,23 @@ tracks/1/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_ift0q"]
-resource_name = "Walk_Down"
-length = 0.4
-loop_mode = 1
-step = 0.0333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"walk_down"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sword")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dgc14"]
 _data = {
 &"Attack": SubResource("Animation_8v1ud"),
 &"Idle": SubResource("Animation_5jp5j"),
+&"Idle_Back": SubResource("Animation_ms58j"),
+&"Idle_Side": SubResource("Animation_b86wg"),
 &"RESET": SubResource("Animation_kik3y"),
 &"Walk_Down": SubResource("Animation_ift0q"),
 &"Walk_Side": SubResource("Animation_cp2oh"),
 &"Walk_Up": SubResource("Animation_m0e2k")
 }
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "health", "hitbox_area") groups=["Player"]]
 script = ExtResource("1_kipck")
+sprite = NodePath("AnimatedSprite2D")
+health = NodePath("HealthComponent")
+hitbox_area = NodePath("HitboxComponent")
 metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -426,14 +433,16 @@ position = Vector2(0, 12.5)
 shape = SubResource("RectangleShape2D_kipck")
 metadata/_edit_lock_ = true
 
-[node name="Hitbox" type="Area2D" parent="."]
-position = Vector2(0, 12.5)
-metadata/_edit_lock_ = true
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("healthbar", "player") instance=ExtResource("8_ues50")]
+MAX_HEALTH = 100.0
+healthbar = NodePath("../HealthBar")
+player = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -12.5)
-shape = SubResource("CapsuleShape2D_y7i74")
-metadata/_edit_lock_ = true
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("9_b42le")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CapsuleShape2D_t3l7m")
 
 [node name="Sword" type="Area2D" parent="."]
 metadata/_edit_lock_ = true
@@ -457,6 +466,19 @@ initial_state = NodePath("PlayerWalk")
 script = ExtResource("3_y7i74")
 animator = NodePath("../../AnimationPlayer")
 
+[node name="PlayerIdle" type="Node" parent="State" node_paths=PackedStringArray("animator")]
+script = ExtResource("10_hdvrl")
+animator = NodePath("../../AnimationPlayer")
+
+[node name="PlayerIdleSide" type="Node" parent="State"]
+script = ExtResource("11_yjrhp")
+
+[node name="PlayerIdleBack" type="Node" parent="State"]
+script = ExtResource("12_b86wg")
+
+[node name="PlayerAttack" type="Node" parent="State"]
+script = ExtResource("15_b42le")
+
 [node name="misc" type="Label" parent="."]
 visible = false
 offset_left = 9.0
@@ -465,3 +487,9 @@ offset_right = 79.0
 offset_bottom = -15.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Restart..."
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -47.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = -21.0
