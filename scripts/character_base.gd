@@ -3,7 +3,6 @@ class_name CharacterBase
 
 @export var sprite: AnimatedSprite2D
 @export var health: HealthComponent
-@export var hitbox_area: HitboxComponent
 @export var attack_damage: float
 @export var knockback_force: float
 @export var stun_time: float
@@ -28,14 +27,6 @@ func after_damage_iframes():
 	await tween.finished
 	invincible = false
 
-func perform_attack():
-	for area in hitbox_area.get_overlapping_areas():
-		if area is HitboxComponent:
-			var attack = Attack.new()
-			attack.attack_damage = attack_damage
-			attack.knockback_force = knockback_force
-			attack.stun_time = stun_time
-			area.damage(attack)
 
 func die():
 	if is_dead:

@@ -177,7 +177,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kipck"]
-size = Vector2(16, 5)
+size = Vector2(16, 8)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t3l7m"]
 radius = 9.0
@@ -220,6 +220,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StateMachine/PlayerAttack")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"perform_attack"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_5jp5j"]
@@ -424,11 +438,11 @@ _data = {
 &"Walk_Up": SubResource("Animation_m0e2k")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "health", "hitbox_area") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "health") groups=["Player"]]
+collision_mask = 72
 script = ExtResource("1_kipck")
 sprite = NodePath("AnimatedSprite2D")
 health = NodePath("HealthComponent")
-hitbox_area = NodePath("HitboxComponent")
 attack_damage = 100.0
 metadata/_edit_lock_ = true
 
@@ -441,7 +455,7 @@ flip_h = true
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12.5)
+position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_kipck")
 metadata/_edit_lock_ = true
 
@@ -451,6 +465,8 @@ healthbar = NodePath("../HealthBar")
 base = NodePath("..")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("9_b42le")]
+collision_layer = 5
+collision_mask = 88
 health_component = NodePath("../HealthComponent")
 metadata/_edit_lock_ = true
 
@@ -459,6 +475,8 @@ shape = SubResource("CapsuleShape2D_t3l7m")
 
 [node name="Sword" parent="." instance=ExtResource("10_t3l7m")]
 position = Vector2(-11, 5)
+collision_layer = 2
+collision_mask = 32
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -484,9 +502,11 @@ script = ExtResource("11_yjrhp")
 [node name="PlayerIdleBack" type="Node" parent="StateMachine"]
 script = ExtResource("12_b86wg")
 
-[node name="PlayerAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator")]
+[node name="PlayerAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator", "hitbox_area")]
 script = ExtResource("15_b42le")
 animator = NodePath("../../AnimationPlayer")
+hitbox_area = NodePath("../../HitboxComponent")
+attack_damage = 100.0
 
 [node name="misc" type="Label" parent="."]
 visible = false

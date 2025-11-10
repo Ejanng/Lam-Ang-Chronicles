@@ -94,30 +94,31 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yknog"]
-size = Vector2(16, 4)
+size = Vector2(16, 8)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_58ixp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uh03k"]
 radius = 122.494896
 
-[node name="Tribe" type="CharacterBody2D" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "health", "hitbox_area")]
+[node name="Tribe" type="CharacterBody2D" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "health")]
+collision_layer = 8
+collision_mask = 65
 script = ExtResource("1_5txy6")
 attack_node = NodePath("StateMachine/EnemyAttack")
 chase_node = NodePath("StateMachine/EnemyChase")
 sprite = NodePath("AnimatedSprite2D")
 health = NodePath("HealthComponent")
-hitbox_area = NodePath("HitboxComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -1)
 sprite_frames = SubResource("SpriteFrames_58ixp")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.6529634
+frame_progress = 0.23786525
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 13)
+position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_yknog")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("healthbar", "base") instance=ExtResource("1_8o6qj")]
@@ -126,6 +127,8 @@ healthbar = NodePath("../HealthBar")
 base = NodePath("..")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_5txy6")]
+collision_layer = 40
+collision_mask = 67
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
@@ -138,6 +141,7 @@ offset_right = 35.0
 offset_bottom = -20.0
 
 [node name="DetectionArea" parent="." instance=ExtResource("4_58ixp")]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 visible = false
