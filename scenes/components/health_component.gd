@@ -4,7 +4,7 @@ class_name HealthComponent
 
 @export var MAX_HEALTH: float = 10.0
 @export var healthbar: ProgressBar
-@export var player: Player
+@export var base: CharacterBase
 
 var health: float
 
@@ -16,5 +16,5 @@ func damage(attack: Attack):
 	healthbar.value = health
 	
 	if health <= 0:
-		player.die()
+		base.die()
 		

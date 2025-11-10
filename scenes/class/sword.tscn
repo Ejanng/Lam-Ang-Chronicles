@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b60n5nv8v32p2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2fek"]
+size = Vector2(10, 20)
+
+[node name="Sword" type="Area2D"]
+
+[node name="AttackHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_d2fek")
+disabled = true

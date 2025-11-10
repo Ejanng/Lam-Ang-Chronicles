@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0gqbwv4e5neu"]
+
+[ext_resource type="PackedScene" uid="uid://cjbjxqe0ihb15" path="res://scenes/Player/Lam-Ang/Player.tscn" id="1_1350x"]
+[ext_resource type="PackedScene" uid="uid://ceklosg6ainab" path="res://scenes/Enemy/Tribe/Tribe.tscn" id="2_hhjo7"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_1350x")]
+position = Vector2(341, 135)
+
+[node name="Tribe" parent="." instance=ExtResource("2_hhjo7")]
+position = Vector2(186, 134)

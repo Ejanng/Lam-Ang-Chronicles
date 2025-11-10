@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://uafwmj20exb5" path="res://scenes/components/health_component.tscn" id="8_ues50"]
 [ext_resource type="PackedScene" uid="uid://us43fp04gv7s" path="res://scenes/components/hitbox_component.tscn" id="9_b42le"]
 [ext_resource type="Script" uid="uid://iuonoxodusxm" path="res://scenes/Player/Lam-Ang/scripts/States/player_idle.gd" id="10_hdvrl"]
+[ext_resource type="PackedScene" uid="uid://b60n5nv8v32p2" path="res://scenes/class/sword.tscn" id="10_t3l7m"]
 [ext_resource type="Script" uid="uid://cnvqgq1t2eveg" path="res://scenes/Player/Lam-Ang/scripts/States/player_idle_side.gd" id="11_yjrhp"]
 [ext_resource type="Script" uid="uid://7un48pvp5rtb" path="res://scenes/Player/Lam-Ang/scripts/States/player_idle_back.gd" id="12_b86wg"]
 [ext_resource type="Script" uid="uid://b2v4uyt2ucery" path="res://scenes/Player/Lam-Ang/scripts/States/player_attack.gd" id="15_b42le"]
@@ -180,9 +181,6 @@ size = Vector2(16, 5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t3l7m"]
 radius = 9.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2fek"]
-size = Vector2(10, 20)
 
 [sub_resource type="Animation" id="Animation_8v1ud"]
 resource_name = "attack"
@@ -431,6 +429,7 @@ script = ExtResource("1_kipck")
 sprite = NodePath("AnimatedSprite2D")
 health = NodePath("HealthComponent")
 hitbox_area = NodePath("HitboxComponent")
+attack_damage = 100.0
 metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -446,10 +445,10 @@ position = Vector2(0, 12.5)
 shape = SubResource("RectangleShape2D_kipck")
 metadata/_edit_lock_ = true
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("healthbar", "player") instance=ExtResource("8_ues50")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("healthbar", "base") instance=ExtResource("8_ues50")]
 MAX_HEALTH = 100.0
 healthbar = NodePath("../HealthBar")
-player = NodePath("..")
+base = NodePath("..")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("9_b42le")]
 health_component = NodePath("../HealthComponent")
@@ -458,12 +457,8 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape2D_t3l7m")
 
-[node name="Sword" type="Area2D" parent="."]
+[node name="Sword" parent="." instance=ExtResource("10_t3l7m")]
 position = Vector2(-11, 5)
-
-[node name="AttackHitbox" type="CollisionShape2D" parent="Sword"]
-shape = SubResource("RectangleShape2D_d2fek")
-disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -471,25 +466,25 @@ libraries = {
 }
 autoplay = "Idle"
 
-[node name="State" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_d2fek")
 initial_state = NodePath("PlayerWalk")
 
-[node name="PlayerWalk" type="Node" parent="State" node_paths=PackedStringArray("animator")]
+[node name="PlayerWalk" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator")]
 script = ExtResource("3_y7i74")
 animator = NodePath("../../AnimationPlayer")
 
-[node name="PlayerIdle" type="Node" parent="State" node_paths=PackedStringArray("animator")]
+[node name="PlayerIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator")]
 script = ExtResource("10_hdvrl")
 animator = NodePath("../../AnimationPlayer")
 
-[node name="PlayerIdleSide" type="Node" parent="State"]
+[node name="PlayerIdleSide" type="Node" parent="StateMachine"]
 script = ExtResource("11_yjrhp")
 
-[node name="PlayerIdleBack" type="Node" parent="State"]
+[node name="PlayerIdleBack" type="Node" parent="StateMachine"]
 script = ExtResource("12_b86wg")
 
-[node name="PlayerAttack" type="Node" parent="State" node_paths=PackedStringArray("animator")]
+[node name="PlayerAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator")]
 script = ExtResource("15_b42le")
 animator = NodePath("../../AnimationPlayer")
 
@@ -507,5 +502,3 @@ offset_left = -47.0
 offset_top = -48.0
 offset_right = 48.0
 offset_bottom = -21.0
-
-[connection signal="body_entered" from="Sword" to="State/PlayerAttack" method="_on_sword_body_entered"]
