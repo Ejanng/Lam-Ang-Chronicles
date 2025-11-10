@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Player
+class_name CharacterBase
 
 @export var sprite: AnimatedSprite2D
 @export var health: HealthComponent

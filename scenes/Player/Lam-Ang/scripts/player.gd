@@ -1,4 +1,4 @@
-extends Player
+extends CharacterBase
 
 class_name LamAng
 
