@@ -12,6 +12,7 @@ var player: CharacterBody2D
 @export var animator: AnimationPlayer
 
 @onready var anim = $"../../AnimatedSprite2D"
+@onready var attack_hitbox = $"../../Sword"
 
 func Enter():
 	player = get_tree().get_first_node_in_group("Player")
@@ -38,16 +39,20 @@ func Move(input_dir: Vector2):
 	
 	var anim_name: String = ""
 	
-	if input_dir.x < 0:
+	if input_dir.x < 0:			# Left
 		anim.flip_h = true
 		anim_name = "Walk_Side"
-	elif input_dir.x > 0:
+		attack_hitbox.position = Vector2(-11, 5)
+	elif input_dir.x > 0:		# Right
 		anim.flip_h = false
 		anim_name = "Walk_Side"
+		attack_hitbox.position = Vector2(11, 5)
 	elif input_dir.y < 0:
 		anim_name = "Walk_Up"
+		#attack_hitbox.position = Vector2(0,0)		# uncomment if added back attack animaton
 	elif input_dir.y > 0:
 		anim_name = "Walk_Down"
+		#attack_hitbox.position = Vector2(0,0)		# uncomment if added front attack animation
 	
 	if animator.current_animation != anim_name:
 		animator.play(anim_name)

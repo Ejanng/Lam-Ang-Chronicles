@@ -5,11 +5,10 @@ class_name PlayerIdle
 
 func Enter():
 	animator.play("Idle")
-	pass
 	
 func Update(delta: float):
 	if Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown").normalized():
 		state_transit.emit(self, "PlayerWalk")
 		
-	if Input.is_action_just_pressed("Punch"):
+	if Input.is_action_just_pressed("Attack"):
 		state_transit.emit(self, "PlayerAttack")
