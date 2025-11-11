@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://dt608g14wdj7n"]
+
+[ext_resource type="Script" uid="uid://2hrqg0hc4vhj" path="res://scenes/Inventory/inventory_item.gd" id="1_053bb"]
+[ext_resource type="Texture2D" uid="uid://c3rsmgyayh3ni" path="res://assets/Artifacts/bato ng palos.png" id="2_xouub"]
+
+[resource]
+script = ExtResource("1_053bb")
+name = "bato_ng_palos"
+texture = ExtResource("2_xouub")
+metadata/_custom_type_script = "uid://2hrqg0hc4vhj"

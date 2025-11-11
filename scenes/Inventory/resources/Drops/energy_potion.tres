@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://nye0tsps12e0"]
+
+[ext_resource type="Script" uid="uid://2hrqg0hc4vhj" path="res://scenes/Inventory/inventory_item.gd" id="1_3rbj4"]
+[ext_resource type="Texture2D" uid="uid://dgx357nh5e5p5" path="res://assets/Drops/mana potion.png" id="2_54vwo"]
+
+[resource]
+script = ExtResource("1_3rbj4")
+name = "energy_potion"
+texture = ExtResource("2_54vwo")
+maxAmountPerStack = 99
+effectValue = 0.2
+isConsumable = true
+metadata/_custom_type_script = "uid://2hrqg0hc4vhj"
