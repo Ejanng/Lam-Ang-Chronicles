@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ceklosg6ainab"]
+[gd_scene load_steps=33 format=3 uid="uid://ceklosg6ainab"]
 
 [ext_resource type="Script" uid="uid://cqauwllxgciud" path="res://scenes/Enemy/Tribe/scripts/tribe.gd" id="1_5txy6"]
 [ext_resource type="PackedScene" uid="uid://uafwmj20exb5" path="res://scenes/components/health_component.tscn" id="1_8o6qj"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://8xkdeimkecuh" path="res://scenes/Enemy/Tribe/scripts/States/enemy_idle.gd" id="6_xign7"]
 [ext_resource type="Script" uid="uid://dgda6qvxu5fsv" path="res://scenes/Enemy/Tribe/scripts/States/enemy_chase.gd" id="7_xkpiu"]
 [ext_resource type="Script" uid="uid://t7syedepvafh" path="res://scenes/Enemy/Tribe/scripts/States/enemy_attack.gd" id="8_j7k0f"]
+[ext_resource type="Script" uid="uid://cdh70cgfmsxqg" path="res://scenes/Enemy/Tribe/scripts/States/enemy_walk.gd" id="12_qaocc"]
+[ext_resource type="PackedScene" uid="uid://b60n5nv8v32p2" path="res://scenes/class/sword.tscn" id="13_46j3g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_46j3g"]
 atlas = ExtResource("2_uh03k")
@@ -101,6 +103,168 @@ size = Vector2(16, 8)
 [sub_resource type="CircleShape2D" id="CircleShape2D_uh03k"]
 radius = 122.494896
 
+[sub_resource type="Animation" id="Animation_1k3v5"]
+resource_name = "EnemyIdle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_178eb"]
+resource_name = "EnemyAttack"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword/AttackHitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_co360"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword/AttackHitbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_d5ibf"]
+resource_name = "EnemyChase"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_p6lqp"]
+resource_name = "EnemyWander"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ibc60"]
+_data = {
+&"EnemyAttack": SubResource("Animation_178eb"),
+&"EnemyChase": SubResource("Animation_d5ibf"),
+&"EnemyIdle": SubResource("Animation_1k3v5"),
+&"EnemyWander": SubResource("Animation_p6lqp"),
+&"RESET": SubResource("Animation_co360")
+}
+
 [node name="Tribe" type="CharacterBody2D" node_paths=PackedStringArray("attack_node", "chase_node", "sprite", "health")]
 collision_layer = 8
 collision_mask = 65
@@ -109,27 +273,31 @@ attack_node = NodePath("StateMachine/EnemyAttack")
 chase_node = NodePath("StateMachine/EnemyChase")
 sprite = NodePath("AnimatedSprite2D")
 health = NodePath("HealthComponent")
+metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -1)
 sprite_frames = SubResource("SpriteFrames_58ixp")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.23786525
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_yknog")
+metadata/_edit_lock_ = true
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("healthbar", "base") instance=ExtResource("1_8o6qj")]
 MAX_HEALTH = 100.0
 healthbar = NodePath("../HealthBar")
 base = NodePath("..")
+metadata/_edit_lock_ = true
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_5txy6")]
 collision_layer = 40
 collision_mask = 67
 health_component = NodePath("../HealthComponent")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape2D_58ixp")
@@ -139,12 +307,14 @@ offset_left = -35.0
 offset_top = -47.0
 offset_right = 35.0
 offset_bottom = -20.0
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="DetectionArea" parent="." instance=ExtResource("4_58ixp")]
 collision_layer = 0
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-visible = false
 shape = SubResource("CircleShape2D_uh03k")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -152,14 +322,32 @@ script = ExtResource("5_yknog")
 initial_state = NodePath("EnemyIdle")
 metadata/_custom_type_script = "uid://23sujqxi4sbs"
 
-[node name="EnemyIdle" type="Node" parent="StateMachine"]
+[node name="EnemyIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator")]
 script = ExtResource("6_xign7")
+animator = NodePath("../../AnimationPlayer")
 
-[node name="EnemyChase" type="Node" parent="StateMachine"]
+[node name="EnemyChase" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator")]
 script = ExtResource("7_xkpiu")
+animator = NodePath("../../AnimationPlayer")
 
 [node name="EnemyAttack" type="Node" parent="StateMachine"]
 script = ExtResource("8_j7k0f")
 
+[node name="EnemyWander" type="Node" parent="StateMachine"]
+script = ExtResource("12_qaocc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ibc60")
+}
+
+[node name="Sword" parent="." instance=ExtResource("13_46j3g")]
+position = Vector2(12, -3)
+
+[node name="AttackHitbox" parent="Sword" index="0"]
+disabled = false
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+
+[editable path="Sword"]
