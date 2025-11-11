@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dobbwec4mb3mn"]
+
+[ext_resource type="Texture2D" uid="uid://0lgyvt1ppqo0" path="res://assets/Drops/coin.png" id="1_1vryp"]
+[ext_resource type="Script" uid="uid://jq50jerlwg86" path="res://scenes/Inventory/scripts/coin.gd" id="1_8ljr6"]
+[ext_resource type="Script" uid="uid://23sujqxi4sbs" path="res://scripts/state_machine.gd" id="2_owm2l"]
+[ext_resource type="PackedScene" uid="uid://bg70pojkynlfl" path="res://scenes/Inventory/States/follow_player.tscn" id="3_8ljr6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dnoim"]
+
+[node name="Coin" type="CharacterBody2D"]
+
+[node name="hitbox" type="Area2D" parent="."]
+script = ExtResource("1_8ljr6")
+
+[node name="Sprite2D" type="Sprite2D" parent="hitbox"]
+texture = ExtResource("1_1vryp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_dnoim")
+
+[node name="StateMachine" type="Node" parent="hitbox" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_owm2l")
+initial_state = NodePath("FollowPlayer")
+metadata/_custom_type_script = "uid://23sujqxi4sbs"
+
+[node name="FollowPlayer" parent="hitbox/StateMachine" node_paths=PackedStringArray("body") instance=ExtResource("3_8ljr6")]
+body = NodePath("../../..")
+
+[connection signal="body_entered" from="hitbox" to="hitbox" method="_on_body_entered"]

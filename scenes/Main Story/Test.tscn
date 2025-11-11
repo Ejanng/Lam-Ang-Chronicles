@@ -1,24 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0gqbwv4e5neu"]
+[gd_scene load_steps=7 format=3 uid="uid://d0gqbwv4e5neu"]
 
 [ext_resource type="PackedScene" uid="uid://cjbjxqe0ihb15" path="res://scenes/Player/Lam-Ang/Player.tscn" id="1_1350x"]
 [ext_resource type="PackedScene" uid="uid://ceklosg6ainab" path="res://scenes/Enemy/Tribe/Tribe.tscn" id="2_hhjo7"]
-[ext_resource type="PackedScene" uid="uid://c28xj6l2ghcpl" path="res://scenes/GUI/scenes/inventory_gui.tscn" id="3_hhjo7"]
+[ext_resource type="PackedScene" uid="uid://dobbwec4mb3mn" path="res://scenes/Inventory/scenes/coin.tscn" id="3_8ji2d"]
+[ext_resource type="PackedScene" uid="uid://d2kcgmewfev8d" path="res://scenes/Inventory/scenes/energy.tscn" id="4_sutov"]
+[ext_resource type="PackedScene" uid="uid://de0ginagjchji" path="res://scenes/Inventory/scenes/health_potion.tscn" id="5_snlnu"]
+[ext_resource type="PackedScene" uid="uid://dp56lntx47unu" path="res://scenes/Inventory/scenes/xp.tscn" id="6_f2627"]
 
 [node name="Test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_1350x")]
 position = Vector2(341, 135)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
-
-[node name="Camera2D" type="Camera2D" parent="Player/CanvasLayer"]
-position = Vector2(186, 134)
-
-[node name="InventoryGui" parent="Player/CanvasLayer" instance=ExtResource("3_hhjo7")]
-offset_left = 90.0
-offset_top = 70.0
-offset_right = 130.0
-offset_bottom = 110.0
-
 [node name="Tribe" parent="." instance=ExtResource("2_hhjo7")]
 position = Vector2(186, 134)
+
+[node name="Coin" parent="." instance=ExtResource("3_8ji2d")]
+position = Vector2(89, 406)
+
+[node name="Energy" parent="." instance=ExtResource("4_sutov")]
+visible = false
+
+[node name="Coin2" parent="." instance=ExtResource("3_8ji2d")]
+visible = false
+
+[node name="HealthPotion" parent="." instance=ExtResource("5_snlnu")]
+visible = false
+
+[node name="XP" parent="." instance=ExtResource("6_f2627")]

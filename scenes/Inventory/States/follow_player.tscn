@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg70pojkynlfl"]
+
+[ext_resource type="Script" uid="uid://d1rpi7vhnf746" path="res://scenes/Inventory/States/follow_player.gd" id="1_jy25s"]
+
+[node name="FollowPlayer" type="Node"]
+script = ExtResource("1_jy25s")

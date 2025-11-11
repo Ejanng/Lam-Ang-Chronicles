@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://de0ginagjchji"]
+
+[ext_resource type="Texture2D" uid="uid://6almpavef2nb" path="res://assets/Drops/health potion.png" id="1_bmjyo"]
+[ext_resource type="Script" uid="uid://ch0q8elv8gktg" path="res://scenes/Inventory/scripts/health_potion.gd" id="1_rmdwf"]
+[ext_resource type="Script" uid="uid://23sujqxi4sbs" path="res://scripts/state_machine.gd" id="2_imhsa"]
+[ext_resource type="PackedScene" uid="uid://bg70pojkynlfl" path="res://scenes/Inventory/States/follow_player.tscn" id="3_rmdwf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g77w2"]
+
+[node name="HealthPotion" type="CharacterBody2D"]
+
+[node name="hitbox" type="Area2D" parent="."]
+script = ExtResource("1_rmdwf")
+
+[node name="Sprite2D" type="Sprite2D" parent="hitbox"]
+texture = ExtResource("1_bmjyo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_g77w2")
+
+[node name="StateMachine" type="Node" parent="hitbox" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_imhsa")
+initial_state = NodePath("FollowPlayer")
+metadata/_custom_type_script = "uid://23sujqxi4sbs"
+
+[node name="FollowPlayer" parent="hitbox/StateMachine" node_paths=PackedStringArray("body") instance=ExtResource("3_rmdwf")]
+body = NodePath("../../..")
+
+[connection signal="body_entered" from="hitbox" to="hitbox" method="_on_body_entered"]

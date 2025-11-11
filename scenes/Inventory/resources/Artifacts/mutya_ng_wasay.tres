@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://b157i5bqdwqnr"]
+
+[ext_resource type="Script" uid="uid://2hrqg0hc4vhj" path="res://scenes/Inventory/inventory_item.gd" id="1_cfnuq"]
+[ext_resource type="Texture2D" uid="uid://d363e46xjhx1l" path="res://assets/Artifacts/mutya ng wasay.png" id="2_7xw3c"]
+
+[resource]
+script = ExtResource("1_cfnuq")
+name = "mutya_ng_wasay"
+texture = ExtResource("2_7xw3c")
+metadata/_custom_type_script = "uid://2hrqg0hc4vhj"

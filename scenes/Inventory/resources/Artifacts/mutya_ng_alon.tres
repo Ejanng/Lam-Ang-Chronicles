@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://p8gr8ilw0eyt"]
+
+[ext_resource type="Script" uid="uid://2hrqg0hc4vhj" path="res://scenes/Inventory/inventory_item.gd" id="1_f1du6"]
+[ext_resource type="Texture2D" uid="uid://euddoldwdbi6" path="res://assets/Artifacts/mutya-ng-alon.png" id="2_xkikq"]
+
+[resource]
+script = ExtResource("1_f1du6")
+name = "mutya-ng-alon"
+texture = ExtResource("2_xkikq")
+metadata/_custom_type_script = "uid://2hrqg0hc4vhj"

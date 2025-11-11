@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://bphrgd7t4ohqn"]
+
+[ext_resource type="Script" uid="uid://2hrqg0hc4vhj" path="res://scenes/Inventory/inventory_item.gd" id="1_gv1ap"]
+[ext_resource type="Texture2D" uid="uid://clwa3f46jy636" path="res://assets/Artifacts/salakot ng lakay.png" id="2_1tg3v"]
+
+[resource]
+script = ExtResource("1_gv1ap")
+name = "salakot_ng_lakay"
+texture = ExtResource("2_1tg3v")
+metadata/_custom_type_script = "uid://2hrqg0hc4vhj"

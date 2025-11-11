@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://dkkwt43cx7dmg"]
+
+[ext_resource type="Script" uid="uid://2hrqg0hc4vhj" path="res://scenes/Inventory/inventory_item.gd" id="1_qf2np"]
+[ext_resource type="Texture2D" uid="uid://2rc8u0dbcl6f" path="res://assets/Artifacts/panyo ng alitaptap.png" id="2_s0lhx"]
+
+[resource]
+script = ExtResource("1_qf2np")
+name = "panyo_ng_alitaptap"
+texture = ExtResource("2_s0lhx")
+metadata/_custom_type_script = "uid://2hrqg0hc4vhj"

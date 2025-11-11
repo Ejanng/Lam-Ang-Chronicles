@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://bigp5dkruet4h"]
+
+[ext_resource type="Script" uid="uid://2hrqg0hc4vhj" path="res://scenes/Inventory/inventory_item.gd" id="1_jidsr"]
+[ext_resource type="Texture2D" uid="uid://bxwfeakbb1iud" path="res://assets/Artifacts/mutya ng ibon.png" id="2_4fgeo"]
+
+[resource]
+script = ExtResource("1_jidsr")
+name = "mutya-ng-ibon"
+texture = ExtResource("2_4fgeo")
+metadata/_custom_type_script = "uid://2hrqg0hc4vhj"

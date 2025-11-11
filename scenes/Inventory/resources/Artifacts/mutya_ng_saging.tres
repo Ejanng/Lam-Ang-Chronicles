@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://b7svsb4pka6vq"]
+
+[ext_resource type="Script" uid="uid://2hrqg0hc4vhj" path="res://scenes/Inventory/inventory_item.gd" id="1_en74y"]
+[ext_resource type="Texture2D" uid="uid://bmaa4rjn86bo5" path="res://assets/Artifacts/mutya ng saging.png" id="2_8u82m"]
+
+[resource]
+script = ExtResource("1_en74y")
+name = "mutya_ng_saging"
+texture = ExtResource("2_8u82m")
+metadata/_custom_type_script = "uid://2hrqg0hc4vhj"
