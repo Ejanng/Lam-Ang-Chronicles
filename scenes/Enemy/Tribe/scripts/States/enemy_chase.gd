@@ -1,7 +1,7 @@
 extends State
 class_name EnemyChase
 
-@export var attack_range: float = 50
+@export var attack_range: float = 17
 @export var move_speed: float = 50
 
 @export var animator: AnimationPlayer

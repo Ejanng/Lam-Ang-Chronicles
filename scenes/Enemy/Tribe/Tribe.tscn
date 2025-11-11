@@ -121,7 +121,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_178eb"]
 resource_name = "EnemyAttack"
 length = 0.8
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -157,6 +156,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StateMachine/EnemyAttack")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"perform_attack"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_co360"]
@@ -330,8 +343,10 @@ animator = NodePath("../../AnimationPlayer")
 script = ExtResource("7_xkpiu")
 animator = NodePath("../../AnimationPlayer")
 
-[node name="EnemyAttack" type="Node" parent="StateMachine"]
+[node name="EnemyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator")]
 script = ExtResource("8_j7k0f")
+animator = NodePath("../../AnimationPlayer")
+attack_damage = 10.0
 
 [node name="EnemyWander" type="Node" parent="StateMachine"]
 script = ExtResource("12_qaocc")
