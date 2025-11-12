@@ -13,12 +13,19 @@ var player: CharacterBody2D
 
 @onready var anim = $"../../AnimatedSprite2D"
 @onready var attack_hitbox = $"../../Sword"
+@onready var inventory_gui = $"../../InventoryGui"
 
 func Enter():
 	player = get_tree().get_first_node_in_group("Player")
 	print(player)
 	
 func Update(delta: float):
+	if Input.is_action_just_pressed("Inventory"):
+		if inventory_gui.isOpen:
+			inventory_gui.close()
+		else:
+			inventory_gui.open()
+			
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown").normalized()
 	Move(input_dir)
 	LessenDash(delta)
@@ -28,6 +35,7 @@ func Update(delta: float):
 		
 	if Input.is_action_just_pressed("Attack"):
 		Transition("PlayerAttack")
+	
 	
 func Move(input_dir: Vector2):
 	if (dash_direction != Vector2.ZERO and dash_direction != input_dir):

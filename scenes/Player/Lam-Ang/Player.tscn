@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cjbjxqe0ihb15"]
+[gd_scene load_steps=50 format=3 uid="uid://cjbjxqe0ihb15"]
 
 [ext_resource type="Texture2D" uid="uid://cjfv6a5g7lalx" path="res://assets/Sprites/Player/Lam-Ang/lam-ang idle spritesheet.png" id="1_kctci"]
 [ext_resource type="Script" uid="uid://dk6puy4b2sbdv" path="res://scenes/Player/Lam-Ang/scripts/player.gd" id="1_kipck"]
@@ -16,6 +16,9 @@
 [ext_resource type="Script" uid="uid://cnvqgq1t2eveg" path="res://scenes/Player/Lam-Ang/scripts/States/player_idle_side.gd" id="11_yjrhp"]
 [ext_resource type="Script" uid="uid://7un48pvp5rtb" path="res://scenes/Player/Lam-Ang/scripts/States/player_idle_back.gd" id="12_b86wg"]
 [ext_resource type="Script" uid="uid://b2v4uyt2ucery" path="res://scenes/Player/Lam-Ang/scripts/States/player_attack.gd" id="15_b42le"]
+[ext_resource type="Script" uid="uid://dmo75xjepj8t2" path="res://scenes/Player/Lam-Ang/scripts/States/open_inventory.gd" id="17_hb7ny"]
+[ext_resource type="PackedScene" uid="uid://c28xj6l2ghcpl" path="res://scenes/GUI/scenes/inventory_gui.tscn" id="17_wdi8f"]
+[ext_resource type="Resource" uid="uid://b3jnw2shnt4qa" path="res://scenes/Inventory/resources/player_inventory.tres" id="18_rwx1o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ues50"]
 atlas = ExtResource("2_6guch")
@@ -508,6 +511,10 @@ animator = NodePath("../../AnimationPlayer")
 hitbox_area = NodePath("../../HitboxComponent")
 attack_damage = 100.0
 
+[node name="PlayerInventory" type="Node" parent="StateMachine"]
+script = ExtResource("17_hb7ny")
+inventory = ExtResource("18_rwx1o")
+
 [node name="misc" type="Label" parent="."]
 visible = false
 offset_left = 9.0
@@ -522,5 +529,7 @@ offset_left = -47.0
 offset_top = -48.0
 offset_right = 48.0
 offset_bottom = -21.0
+
+[node name="InventoryGui" parent="." instance=ExtResource("17_wdi8f")]
 
 [editable path="Sword"]
